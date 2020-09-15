@@ -40,13 +40,8 @@ class RuleMgr:
     def getClade(self, word_list):
         total_clade_list = []
         for rule in self.cladeRules:
-            tmp = []
             for word in word_list:
                 clades = rule.cladeCheck(word)
                 if clades is not None:
-                    if any(isinstance(unit, list) for unit in clades):
-                        tmp.extend(clades)
-                    else:
-                        tmp.append(clades)
-            total_clade_list.append(tmp)
+                    total_clade_list.append(clades)
         return total_clade_list

@@ -23,9 +23,18 @@ class OrbKOR:
             OrbKOR.rule_mgr = RuleMgr(global_config, rule)
 
     def parse(self, data):
-        self.clade_list = []
+        clade_list = []
         if OrbKOR.parser.getSent(data):
             word_list = OrbKOR.parser.getSent(data).word_list
-            self.clade_list = OrbKOR.rule_mgr.getClade(word_list)
+            clade_list = OrbKOR.rule_mgr.getClade(word_list)
+            self.model_mgr.addClade(clade_list)
         else:
             return "No Sentence"
+
+    def getClade(self):
+        ret = []
+        for cladeObj in self.model_mgr.cladeObj_list:
+            clade = cladeObj.clade
+            text = " ".join([word.txt for word in clade])
+            ret.append(text)
+        return ret

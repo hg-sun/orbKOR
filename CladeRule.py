@@ -13,7 +13,7 @@ class CladeRule:
     def cladeCheck(self, word):
         word_dic = {}
         total_word_list = []
-
+        
         for unit_rule in self.unit_list:
             if unit_rule.parent == '':
                 if unit_rule.unitCheck(word):
@@ -24,10 +24,12 @@ class CladeRule:
             else:
                 if len(total_word_list) == 0:
                     matched_word = []
-                    for word_child in word_dic[uni_rule.parent].children:
+                    for word_child in word_dic[unit_rule.parent].children:
                         if unit_rule.unitCheck(word_child):
                             matched_word.append(word_child)
-                    if len(matched_word) == 1:
+                    if len(matched_word) == 0:
+                        return None
+                    elif len(matched_word) == 1:
                         key = unit_rule.idx
                         word_dic[key] = matched_word[0]
                     else:
@@ -38,12 +40,12 @@ class CladeRule:
                             total_word_list.append(word_dic_tmp)
                 else:
                     for dic in total_word_list:
-                        condition = Flase
+                        condition = False
                         for word_child in dic[unit_rule.parent].children:
                             if unit_rule.unitCheck(word_child):
                                 condition = True
                                 key = unit_rule.idx
-                                dic[key] - word_child
+                                dic[key] = word_child
                             if not condition:
                                 dic['condition'] = 'N'
                     total_word_list = [dic for dic in total_word_list if 'condition' not in dic]
