@@ -21,3 +21,14 @@ class Parser:
                 if sent == data:
                     check = True
         return check
+
+    def getSent(self, data):
+        check = False
+        for doc in self.doc_list:
+            for sent in doc.sent_list:
+                if sent.sent == data:
+                    check = True
+                    return sent
+        if not check:
+            return check
+

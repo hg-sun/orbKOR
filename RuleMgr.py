@@ -1,9 +1,12 @@
 import csv
 
+from CladeRule import CladeRule
+from UnitRule import UnitRule
+
 class RuleMgr:
     def __init__(self, config, rule):
         self.rule = rule if rule is not None else 'default'
-        rule_path = config.getValue('RuleMgr', self.rule + 'rule.file')
+        rule_path = config.getValue('RuleMgr', self.rule + '.rule.file')
 
         self.cladeRules = []
         
@@ -30,6 +33,20 @@ class RuleMgr:
 
     def findCladeRuleById(self, clade_id):
         for clade_rule in self.cladeRules:
-            if clade_id == clade.rule.getCladeId():
+            if clade_id == clade_rule.getCladeId():
                 return clade_rule
         return None
+
+    def getClade(self, word_list):
+        total_clade_list = []
+        for rule in self.cladeRules:
+            tmp = []
+            for word in word_list:
+                clades = rule.cladeCheck(word)
+                if clades is not None:
+                    if any(isinstance(unit, list) for unit in clades):
+                        tmp.extend(clades)
+                    else:
+                        tmp.append(clades)
+            total_clade_list.append(tmp)
+        return total_clade_list
