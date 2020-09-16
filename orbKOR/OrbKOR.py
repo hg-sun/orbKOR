@@ -1,9 +1,9 @@
 import os, sys
 
-from ConfigMgr import ConfigMgr
-from RuleMgr import RuleMgr
-from ModelMgr import ModelMgr
-from util.parse.Parser import Parser
+from orbKOR.ConfigMgr import ConfigMgr
+from orbKOR.RuleMgr import RuleMgr
+from orbKOR.ModelMgr import ModelMgr
+from orbKOR.util.parse.Parser import Parser
 
 current_path = os.path.dirname(os.path.abspath(__file__))
 global_config = ConfigMgr(current_path)

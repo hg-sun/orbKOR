@@ -1,4 +1,4 @@
-from util.parse.Word import Word
+from orbKOR.util.parse.Word import Word
 
 class Sent:
     def __init__(self, data):

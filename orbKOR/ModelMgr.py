@@ -1,5 +1,5 @@
 
-from Clade import Clade
+from orbKOR.Clade import Clade
 
 class ModelMgr:
     def __init__(self):

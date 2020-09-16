@@ -1,4 +1,4 @@
-from util.parse.Sent import Sent
+from orbKOR.util.parse.Sent import Sent
 
 class Doc:
     def __init__(self, data):

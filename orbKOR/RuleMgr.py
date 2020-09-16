@@ -1,7 +1,7 @@
 import csv
 
-from CladeRule import CladeRule
-from UnitRule import UnitRule
+from orbKOR.CladeRule import CladeRule
+from orbKOR.UnitRule import UnitRule
 
 class RuleMgr:
     def __init__(self, config, rule):

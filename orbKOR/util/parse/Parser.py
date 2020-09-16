@@ -1,6 +1,6 @@
 import json
 
-from util.parse.Doc import Doc
+from orbKOR.util.parse.Doc import Doc
 
 class Parser:
     def __init__(self, config):
