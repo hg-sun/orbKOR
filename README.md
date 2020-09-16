@@ -3,7 +3,7 @@
 
 ### 개발 관리
 
-- **Image Build **
+- **Image Build**
 
 ```bash
 docker build . -t hg-sun/orbkor:v1.0 -f Dockerfile --built-arg PORT=18000 
