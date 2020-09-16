@@ -14,7 +14,6 @@ class OrbKOR:
     rule_mgr = RuleMgr(global_config, rule=None)
 
     def __init__(self, rule=None):
-        self.model_mgr = ModelMgr()
 
         if rule is None:
             rule = 'default'
@@ -23,6 +22,7 @@ class OrbKOR:
             OrbKOR.rule_mgr = RuleMgr(global_config, rule)
 
     def parse(self, data):
+        self.model_mgr = ModelMgr()
         clade_list = []
         if OrbKOR.parser.getSent(data):
             word_list = OrbKOR.parser.getSent(data).word_list
