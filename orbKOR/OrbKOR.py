@@ -28,8 +28,9 @@ class OrbKOR:
             word_list = OrbKOR.parser.getSent(data).word_list
             clade_list = OrbKOR.rule_mgr.getClade(word_list)
             self.model_mgr.addClade(clade_list)
+            return True
         else:
-            return "No Sentence"
+            return False
 
     def getClade(self):
         ret = []

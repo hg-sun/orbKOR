@@ -12,9 +12,11 @@ from orbKOR.OrbKOR import OrbKOR
 from orbKOR.ConfigMgr import ConfigMgr
 
 app = Flask(__name__, static_url_path='/static')
+app.config['JSON_AS_ASCII'] = False
 api = Api(app)
 
 current_path = os.path.dirname(os.path.abspath(__file__))
+global_config = ConfigMgr(os.path.join(current_path, 'orbKOR'))
 ok = OrbKOR()
 
 #Append Mode
@@ -22,9 +24,14 @@ ok = OrbKOR()
 def extractClade():
     input_data = request.get_json(force=True)
     data = input_data['data']
-    ok.parse(data)
-    clades = ok.getClade()
-    ret = "|".join(clades)
+    if ok.parse(data):
+        clades = ok.getClade()
+        if len(clades) != 0:
+            ret = "|".join(clades)
+        else:
+            ret = 'No Clade Matched'
+    else:
+        ret = 'No Matched Sentence'
     return jsonify(ret)
 
 @app.route('/')
